@@ -1,7 +1,13 @@
 import React from "react";
 
-const MyButton: React.FC = () => {
-  return <button>MyButton</button>;
+interface MyButton {
+  text: String | number | boolean;
+  onClick?: () => void;
+}
+
+const MyButton: React.FC<MyButton> = (props) => {
+  const { text, onClick } = props;
+  return <button onClick={onClick}>{text}</button>;
 };
 
 export default MyButton;

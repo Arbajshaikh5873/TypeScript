@@ -4,7 +4,13 @@ import MyButton from "./Components/MyButton";
 function App() {
   return (
     <>
-      <MyButton />
+      <MyButton
+        text="Click Me"
+        onClick={() => {
+          alert("Button Clicked!!");
+        }}
+      />
+      <MyButton text="Click " />
     </>
   );
 }
