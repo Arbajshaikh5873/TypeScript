@@ -5,14 +5,24 @@ interface MyButton {
   onClick?: () => void;
 }
 
-const [value, setValue] = useState<number>(1);
-
+interface Book {
+  name: String;
+  price: number;
+}
 const MyButton: React.FC<MyButton> = (props) => {
+  const [value, setValue] = useState<Book>({
+    name: "one",
+    price: 10,
+  });
   const { text } = props;
   return (
     <div>
-      <h1>{value}</h1>
-      <button onClick={() => setValue((prev) => prev + 1)}>{text}</button>
+      <h1>
+        Name {value.name} of Rs. {value.price}
+      </h1>
+      <button onClick={() => setValue({ name: "two", price: 20 })}>
+        {text}
+      </button>
     </div>
   );
 };
