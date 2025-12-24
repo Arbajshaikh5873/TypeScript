@@ -1,28 +1,41 @@
 import React, { useState } from "react";
-
-interface MyButton {
-  text: String | number | boolean;
+interface MyButtonInterface {
+  text: string | number;
   onClick?: () => void;
 }
 
 interface Book {
-  name: String;
+  title: string;
   price: number;
 }
-const MyButton: React.FC<MyButton> = (props) => {
-  const [value, setValue] = useState<Book>({
-    name: "one",
-    price: 10,
-  });
-  const { text } = props;
+
+const MyButton: React.FC<MyButtonInterface> = (props) => {
+  const [value, setValue] = useState<Book>({ title: "One", price: 10 });
+  const [input, setInput] = useState<string | undefined>("");
+  const { text, onClick = () => {} } = props;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
   return (
     <div>
-      <h1>
-        Name {value.name} of Rs. {value.price}
-      </h1>
-      <button onClick={() => setValue({ name: "two", price: 20 })}>
-        {text}
-      </button>
+      <div>
+        <h3>
+          {value.price}-{value.title}
+        </h3>
+        <button onClick={() => setValue({ title: "Two", price: 20 })}>
+          {text}
+        </button>
+      </div>
+
+      <div>
+        <form action="">
+          <div>
+            <h3>{input}</h3>
+            <input type="text" onChange={handleChange} value={input} />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
